@@ -81,7 +81,7 @@ final class Image extends AbstractImage
      */
     public function __destruct()
     {
-        if (null !== $this->imagick && $this->imagick instanceof \Imagick) {
+        if ($this->imagick instanceof \Imagick) {
             $this->imagick->clear();
             $this->imagick->destroy();
         }
@@ -103,7 +103,7 @@ final class Image extends AbstractImage
     public function copy()
     {
         try {
-            if (version_compare(phpversion("imagick"), "3.1.0b1", ">=")) {
+            if (version_compare(phpversion("imagick"), "3.1.0b1", ">=") || defined("HHVM_VERSION")) {
                 $clone = clone $this->imagick;
             } else {
                 $clone = $this->imagick->clone();
@@ -361,8 +361,11 @@ final class Image extends AbstractImage
     public function getSize()
     {
         try {
+            $i = $this->imagick->getIteratorIndex();
+            $this->imagick->rewind();
             $width  = $this->imagick->getImageWidth();
             $height = $this->imagick->getImageHeight();
+            $this->imagick->setIteratorIndex($i);
         } catch (\ImagickException $e) {
             throw new RuntimeException('Could not get size', $e->getCode(), $e);
         }

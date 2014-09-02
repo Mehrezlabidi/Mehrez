@@ -14,9 +14,12 @@ acteur.modifier.succes: The actor %prenom% %nom% has been successfully updated !
 acteur.aucun: No actor found
 acteur.top.jeunes: Top youngest actors
 
+
+rubrique.title: Rubric
+
+
 # Film
 film: Movie
-film.titre: Title
 film.description: Description
 film.categorie: Category
 film.acteurs: Actors
@@ -32,8 +35,7 @@ film.top: Top movies
 
 # Menu
 menu.accueil: Home
-menu.films: Movies
-menu.acteurs: Actors
+menu.title: title
 menu.choisir_langue: Choose a language
 
 # Divers

@@ -181,8 +181,8 @@ $(document).pngFix( );
 
 	<!-- start logo -->
 	<div id="logo">
-	<a href="">
-       <!--  <img src="{{ asset('bundles/myappesprit/images/shared/logo.png') }}" width="156" height="40" alt="" />  -->
+	  <a href="{{ path('my_app_esprit_mail' ) }}"> 
+    <!-- <img src="{{ asset('bundles/myappesprit/images/shared/logo.png') }}" width="156" height="40" alt="" />  -->
             </a>
 	</div>
 	<!-- end logo -->
@@ -287,7 +287,7 @@ $(document).pngFix( );
 
 		<div class="nav-divider">&nbsp;</div>
 
-  <ul class="current"><li><a href="{{ path('my_app_esprit_rubrique_show') }}"><b>Rubrique</b><!--[if IE 7]><!--></a><!--<![endif]-->
+  <ul class="select"><li><a href="{{ path('my_app_esprit_rubrique_show') }}"><b>Rubrique</b><!--[if IE 7]><!--></a><!--<![endif]-->
 		<!--[if lte IE 6]><table><tr><td><![endif]-->
 		<div class="select_sub show">
 			<ul class="sub">
@@ -359,6 +359,25 @@ $(document).pngFix( );
 		<!--[if lte IE 6]></td></tr></table></a><![endif]-->
 		</li>
 		</ul>
+                
+                
+
+                <div class="nav-divider">&nbsp;</div>
+
+ <ul class="select"><li><a href="{{ path('my_app_esprit_mail') }}"><b>Contact Us </b><!--[if IE 7]><!--></a><!--<![endif]-->
+		<!--[if lte IE 6]><table><tr><td><![endif]-->
+		<div class="select_sub">
+			<!--<ul class="sub">
+				<li><a href="{{ path('my_app_esprit_role_new') }}">ajouter  un role</a></li>
+				<li><a href="{{ path('my_app_esprit_role_show') }}">afficher des  roles</a></li>
+
+                        </ul>-->
+		</div>
+		<!--[if lte IE 6]></td></tr></table></a><![endif]-->
+		</li>
+		</ul>
+                        
+                        
 		<div class="clear"></div>
 		</div>
 		<div class="clear"></div>

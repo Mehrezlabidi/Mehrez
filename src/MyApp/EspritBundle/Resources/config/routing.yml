@@ -125,5 +125,7 @@ my_app_esprit_article_voir:
 my_app_esprit_mail:
     pattern:  /mail/
     defaults: { _controller: MyAppEspritBundle:Mail:index } 
-    
  
+myapp_choisir_langue:
+    pattern: /choisir-langue/{langue}
+    defaults: { _controller: MyAppEspritBundle:Default:choisirLangue }

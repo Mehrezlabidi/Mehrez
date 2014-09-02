@@ -29,7 +29,7 @@ class __TwigTemplate_061c734a8f9b179d8035455f0dd14e2376acda8f77b2cd36eb335f6fd42
             <h1>
                 ";
         // line 12
-        echo $this->env->getExtension('code')->formatFileFromText(nl2br(twig_escape_filter($this->env, $this->getAttribute((isset($context["exception"]) ? $context["exception"] : $this->getContext($context, "exception")), "message"), "html", null, true)));
+        echo $this->env->getExtension('code')->formatFileFromText(nl2br(twig_escape_filter($this->env, $this->getAttribute((isset($context["exception"]) ? $context["exception"] : $this->getContext($context, "exception")), "message", array()), "html", null, true)));
         echo "
             </h1>
 
@@ -40,13 +40,13 @@ class __TwigTemplate_061c734a8f9b179d8035455f0dd14e2376acda8f77b2cd36eb335f6fd42
         echo "</strong> ";
         echo twig_escape_filter($this->env, (isset($context["status_text"]) ? $context["status_text"] : $this->getContext($context, "status_text")), "html", null, true);
         echo " - ";
-        echo $this->env->getExtension('code')->abbrClass($this->getAttribute((isset($context["exception"]) ? $context["exception"] : $this->getContext($context, "exception")), "class"));
+        echo $this->env->getExtension('code')->abbrClass($this->getAttribute((isset($context["exception"]) ? $context["exception"] : $this->getContext($context, "exception")), "class", array()));
         echo "
             </div>
 
             ";
         // line 19
-        $context["previous_count"] = twig_length_filter($this->env, $this->getAttribute((isset($context["exception"]) ? $context["exception"] : $this->getContext($context, "exception")), "allPrevious"));
+        $context["previous_count"] = twig_length_filter($this->env, $this->getAttribute((isset($context["exception"]) ? $context["exception"] : $this->getContext($context, "exception")), "allPrevious", array()));
         // line 20
         echo "            ";
         if ((isset($context["previous_count"]) ? $context["previous_count"] : $this->getContext($context, "previous_count"))) {
@@ -60,13 +60,13 @@ class __TwigTemplate_061c734a8f9b179d8035455f0dd14e2376acda8f77b2cd36eb335f6fd42
                         ";
             // line 23
             $context['_parent'] = (array) $context;
-            $context['_seq'] = twig_ensure_traversable($this->getAttribute((isset($context["exception"]) ? $context["exception"] : $this->getContext($context, "exception")), "allPrevious"));
+            $context['_seq'] = twig_ensure_traversable($this->getAttribute((isset($context["exception"]) ? $context["exception"] : $this->getContext($context, "exception")), "allPrevious", array()));
             foreach ($context['_seq'] as $context["i"] => $context["previous"]) {
                 // line 24
                 echo "                            <li>
                                 ";
                 // line 25
-                echo $this->env->getExtension('code')->abbrClass($this->getAttribute((isset($context["previous"]) ? $context["previous"] : $this->getContext($context, "previous")), "class"));
+                echo $this->env->getExtension('code')->abbrClass($this->getAttribute((isset($context["previous"]) ? $context["previous"] : $this->getContext($context, "previous")), "class", array()));
                 echo " <a href=\"#traces-link-";
                 echo twig_escape_filter($this->env, ((isset($context["i"]) ? $context["i"] : $this->getContext($context, "i")) + 1), "html", null, true);
                 echo "\" onclick=\"toggle('traces-";
@@ -99,7 +99,7 @@ class __TwigTemplate_061c734a8f9b179d8035455f0dd14e2376acda8f77b2cd36eb335f6fd42
 ";
         // line 39
         $context['_parent'] = (array) $context;
-        $context['_seq'] = twig_ensure_traversable($this->getAttribute((isset($context["exception"]) ? $context["exception"] : $this->getContext($context, "exception")), "toarray"));
+        $context['_seq'] = twig_ensure_traversable($this->getAttribute((isset($context["exception"]) ? $context["exception"] : $this->getContext($context, "exception")), "toarray", array()));
         foreach ($context['_seq'] as $context["position"] => $context["e"]) {
             // line 40
             echo "    ";
@@ -133,15 +133,15 @@ class __TwigTemplate_061c734a8f9b179d8035455f0dd14e2376acda8f77b2cd36eb335f6fd42
             echo "
             ";
             // line 56
-            if ($this->getAttribute((isset($context["logger"]) ? $context["logger"] : $this->getContext($context, "logger")), "counterrors")) {
+            if ($this->getAttribute((isset($context["logger"]) ? $context["logger"] : $this->getContext($context, "logger")), "counterrors", array())) {
                 // line 57
                 echo "                <div class=\"error-count\">
                     <span>
                         ";
                 // line 59
-                echo twig_escape_filter($this->env, $this->getAttribute((isset($context["logger"]) ? $context["logger"] : $this->getContext($context, "logger")), "counterrors"), "html", null, true);
+                echo twig_escape_filter($this->env, $this->getAttribute((isset($context["logger"]) ? $context["logger"] : $this->getContext($context, "logger")), "counterrors", array()), "html", null, true);
                 echo " error";
-                echo ((($this->getAttribute((isset($context["logger"]) ? $context["logger"] : $this->getContext($context, "logger")), "counterrors") > 1)) ? ("s") : (""));
+                echo ((($this->getAttribute((isset($context["logger"]) ? $context["logger"] : $this->getContext($context, "logger")), "counterrors", array()) > 1)) ? ("s") : (""));
                 echo "
                     </span>
                 </div>
@@ -153,7 +153,7 @@ class __TwigTemplate_061c734a8f9b179d8035455f0dd14e2376acda8f77b2cd36eb335f6fd42
         <div id=\"logs\">
             ";
             // line 66
-            $this->env->loadTemplate("TwigBundle:Exception:logs.html.twig")->display(array("logs" => $this->getAttribute((isset($context["logger"]) ? $context["logger"] : $this->getContext($context, "logger")), "logs")));
+            $this->env->loadTemplate("TwigBundle:Exception:logs.html.twig")->display(array("logs" => $this->getAttribute((isset($context["logger"]) ? $context["logger"] : $this->getContext($context, "logger")), "logs", array())));
             // line 67
             echo "        </div>
     </div>

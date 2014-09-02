@@ -26,6 +26,7 @@ class ArticleController extends Controller {
                 
                 return $this->redirect($this->generateUrl('my_app_esprit_article_show'));
             }
+            
         }
 
         return $this->render('MyAppEspritBundle:Article:send.html.twig', array('form' => $form->createView()));
@@ -62,9 +63,9 @@ class ArticleController extends Controller {
           
         $em->remove($article);
         $em->flush();
-        
+                         /********** FlashBag ****** */
          $this->get('session')->getFlashBag()->set('message', 'Cet article disparait !!'); 
-         
+                        /**************** */
         return $this->redirect($this->generateUrl('my_app_esprit_article_show'));
     }
 

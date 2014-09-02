@@ -30,9 +30,9 @@ class __TwigTemplate_f90134eea8fca8d022f175873d752127959c7672aabb5c7a622a699eb74
             echo "]</small></span>
             ";
             // line 5
-            echo $this->env->getExtension('code')->abbrClass($this->getAttribute((isset($context["exception"]) ? $context["exception"] : $this->getContext($context, "exception")), "class"));
+            echo $this->env->getExtension('code')->abbrClass($this->getAttribute((isset($context["exception"]) ? $context["exception"] : $this->getContext($context, "exception")), "class", array()));
             echo ": ";
-            echo $this->env->getExtension('code')->formatFileFromText(nl2br(twig_escape_filter($this->env, $this->getAttribute((isset($context["exception"]) ? $context["exception"] : $this->getContext($context, "exception")), "message"), "html", null, true)));
+            echo $this->env->getExtension('code')->formatFileFromText(nl2br(twig_escape_filter($this->env, $this->getAttribute((isset($context["exception"]) ? $context["exception"] : $this->getContext($context, "exception")), "message", array()), "html", null, true)));
             echo "&nbsp;
             ";
             // line 6
@@ -83,7 +83,7 @@ class __TwigTemplate_f90134eea8fca8d022f175873d752127959c7672aabb5c7a622a699eb74
         ";
         // line 19
         $context['_parent'] = (array) $context;
-        $context['_seq'] = twig_ensure_traversable($this->getAttribute((isset($context["exception"]) ? $context["exception"] : $this->getContext($context, "exception")), "trace"));
+        $context['_seq'] = twig_ensure_traversable($this->getAttribute((isset($context["exception"]) ? $context["exception"] : $this->getContext($context, "exception")), "trace", array()));
         foreach ($context['_seq'] as $context["i"] => $context["trace"]) {
             // line 20
             echo "            <li>

@@ -208,8 +208,11 @@ updateSelects(today.getTime());
 
 \t<!-- start logo -->
 \t<div id=\"logo\">
-\t<a href=\"\">
-       <!--  <img src=\"";
+\t  <a href=\"";
+        // line 184
+        echo $this->env->getExtension('routing')->getPath("my_app_esprit_mail");
+        echo "\"> 
+    <!-- <img src=\"";
         // line 185
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/myappesprit/images/shared/logo.png"), "html", null, true);
         echo "\" width=\"156\" height=\"40\" alt=\"\" />  -->
@@ -341,7 +344,7 @@ updateSelects(today.getTime());
 
 \t\t<div class=\"nav-divider\">&nbsp;</div>
 
-  <ul class=\"current\"><li><a href=\"";
+  <ul class=\"select\"><li><a href=\"";
         // line 290
         echo $this->env->getExtension('routing')->getPath("my_app_esprit_rubrique_show");
         echo "\"><b>Rubrique</b><!--[if IE 7]><!--></a><!--<![endif]-->
@@ -458,6 +461,34 @@ updateSelects(today.getTime());
 \t\t<!--[if lte IE 6]></td></tr></table></a><![endif]-->
 \t\t</li>
 \t\t</ul>
+                
+                
+
+                <div class=\"nav-divider\">&nbsp;</div>
+
+ <ul class=\"select\"><li><a href=\"";
+        // line 367
+        echo $this->env->getExtension('routing')->getPath("my_app_esprit_mail");
+        echo "\"><b>Contact Us </b><!--[if IE 7]><!--></a><!--<![endif]-->
+\t\t<!--[if lte IE 6]><table><tr><td><![endif]-->
+\t\t<div class=\"select_sub\">
+\t\t\t<!--<ul class=\"sub\">
+\t\t\t\t<li><a href=\"";
+        // line 371
+        echo $this->env->getExtension('routing')->getPath("my_app_esprit_role_new");
+        echo "\">ajouter  un role</a></li>
+\t\t\t\t<li><a href=\"";
+        // line 372
+        echo $this->env->getExtension('routing')->getPath("my_app_esprit_role_show");
+        echo "\">afficher des  roles</a></li>
+
+                        </ul>-->
+\t\t</div>
+\t\t<!--[if lte IE 6]></td></tr></table></a><![endif]-->
+\t\t</li>
+\t\t</ul>
+                        
+                        
 \t\t<div class=\"clear\"></div>
 \t\t</div>
 \t\t<div class=\"clear\"></div>
@@ -488,7 +519,7 @@ updateSelects(today.getTime());
 \t\t<th rowspan=\"3\" class=\"sized\">
                    
   <img src=\"";
-        // line 391
+        // line 410
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/myappesprit/images/shared/side_shadowleft.jpg"), "html", null, true);
         echo "\" width=\"20\" height=\"300\" alt=\"\"  />                  
                 </th>
@@ -498,7 +529,7 @@ updateSelects(today.getTime());
 \t\t<th rowspan=\"3\" class=\"sized\">
                    
         <img src=\"";
-        // line 398
+        // line 417
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/myappesprit/images/shared/side_shadowright.jpg"), "html", null, true);
         echo "\" width=\"20\" height=\"300\" alt=\"\"  />           
                 </th>
@@ -582,6 +613,6 @@ ou d'applications multimédia.<br/>Ils partagent les fonctionnalités suivantes 
 
     public function getDebugInfo()
     {
-        return array (  502 => 398,  492 => 391,  453 => 355,  449 => 354,  442 => 350,  430 => 341,  426 => 340,  419 => 336,  405 => 325,  401 => 324,  394 => 320,  381 => 310,  377 => 309,  370 => 305,  357 => 295,  353 => 294,  346 => 290,  333 => 280,  329 => 279,  322 => 275,  286 => 242,  282 => 241,  274 => 236,  270 => 235,  238 => 206,  214 => 185,  120 => 94,  31 => 8,  25 => 5,  19 => 1,);
+        return array (  533 => 417,  523 => 410,  482 => 372,  478 => 371,  471 => 367,  456 => 355,  452 => 354,  445 => 350,  433 => 341,  429 => 340,  422 => 336,  408 => 325,  404 => 324,  397 => 320,  384 => 310,  380 => 309,  373 => 305,  360 => 295,  356 => 294,  349 => 290,  336 => 280,  332 => 279,  325 => 275,  289 => 242,  285 => 241,  277 => 236,  273 => 235,  241 => 206,  217 => 185,  213 => 184,  120 => 94,  31 => 8,  25 => 5,  19 => 1,);
     }
 }

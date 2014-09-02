@@ -86,7 +86,7 @@ class __TwigTemplate_40226f1c1e957d2a1804597c5d02ad2e437d81d453951db620f2233e06b
 \t\t\t<th valign=\"top\">Titre de l'actualit&eacute;:</th>
 \t\t\t<td>";
         // line 52
-        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "titre"), 'widget', array("attr" => array("class" => "inp-form")));
+        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "titre", array()), 'widget', array("attr" => array("class" => "inp-form")));
         echo "</td>   
                         <td>
 \t\t\t<div class=\"error-left\"></div>
@@ -97,7 +97,7 @@ class __TwigTemplate_40226f1c1e957d2a1804597c5d02ad2e437d81d453951db620f2233e06b
 \t\t\t<th valign=\"top\">Image:</th>
 \t\t\t<td>";
         // line 60
-        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "image"), 'widget', array("attr" => array("class" => "inp-form")));
+        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "image", array()), 'widget', array("attr" => array("class" => "inp-form")));
         echo "</td>                      
 \t\t</tr>
                 
@@ -105,7 +105,7 @@ class __TwigTemplate_40226f1c1e957d2a1804597c5d02ad2e437d81d453951db620f2233e06b
 \t\t\t<th valign=\"top\">Description :</th>
 \t\t\t<td>";
         // line 65
-        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "description"), 'widget', array("attr" => array("class" => "inp-form")));
+        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "description", array()), 'widget', array("attr" => array("class" => "inp-form")));
         echo "  </td>
                         
                         <td>
@@ -117,7 +117,7 @@ class __TwigTemplate_40226f1c1e957d2a1804597c5d02ad2e437d81d453951db620f2233e06b
 \t\t\t<th valign=\"top\">Utilisateur:</th>
 \t\t\t<td>";
         // line 74
-        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "utilisateur"), 'widget', array("attr" => array("class" => "inp-form")));
+        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "utilisateur", array()), 'widget', array("attr" => array("class" => "inp-form")));
         echo "</td>                      
 \t\t</tr>
                
@@ -131,7 +131,7 @@ class __TwigTemplate_40226f1c1e957d2a1804597c5d02ad2e437d81d453951db620f2233e06b
 \t\t\t\t<td>
 \t\t\t\t<form id=\"chooseDateForm\" action=\"";
         // line 85
-        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "dateinsertion"), 'widget', array("attr" => array("class" => "inp-form")));
+        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "dateinsertion", array()), 'widget', array("attr" => array("class" => "inp-form")));
         echo " 
                                
 \t\t\t\t</td>
@@ -159,7 +159,7 @@ class __TwigTemplate_40226f1c1e957d2a1804597c5d02ad2e437d81d453951db620f2233e06b
 \t\t\t<td>";
         // line 106
         echo " </td> <td> ";
-        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "_token"), 'widget');
+        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "_token", array()), 'widget');
         echo " </td>
                         
                         

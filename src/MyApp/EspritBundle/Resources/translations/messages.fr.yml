@@ -30,10 +30,10 @@ film.aucun: Aucun film n'a été trouvé
 film.fiche: Fiche du film %titre%
 film.top: Top films
 
+rubrique.title: Rubrique
 # Menu
-menu.accueil: Accueil
-menu.films: Films
-menu.acteurs: Acteurs
+menu.title: titre
+
 menu.choisir_langue: Choisir la langue
 
 # Divers

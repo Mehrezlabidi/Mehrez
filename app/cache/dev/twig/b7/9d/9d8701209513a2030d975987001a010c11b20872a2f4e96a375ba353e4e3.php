@@ -57,22 +57,22 @@ class __TwigTemplate_b79d9d8701209513a2030d975987001a010c11b20872a2f4e96a375ba35
                             <strong>Profile for:</strong>
                             ";
             // line 18
-            echo twig_escape_filter($this->env, twig_upper_filter($this->env, $this->getAttribute((isset($context["profile"]) ? $context["profile"] : $this->getContext($context, "profile")), "method")), "html", null, true);
+            echo twig_escape_filter($this->env, twig_upper_filter($this->env, $this->getAttribute((isset($context["profile"]) ? $context["profile"] : $this->getContext($context, "profile")), "method", array())), "html", null, true);
             echo "
                             ";
             // line 19
-            if (twig_in_filter(twig_upper_filter($this->env, $this->getAttribute((isset($context["profile"]) ? $context["profile"] : $this->getContext($context, "profile")), "method")), array(0 => "GET", 1 => "HEAD"))) {
+            if (twig_in_filter(twig_upper_filter($this->env, $this->getAttribute((isset($context["profile"]) ? $context["profile"] : $this->getContext($context, "profile")), "method", array())), array(0 => "GET", 1 => "HEAD"))) {
                 // line 20
                 echo "                                <a href=\"";
-                echo twig_escape_filter($this->env, $this->getAttribute((isset($context["profile"]) ? $context["profile"] : $this->getContext($context, "profile")), "url"), "html", null, true);
+                echo twig_escape_filter($this->env, $this->getAttribute((isset($context["profile"]) ? $context["profile"] : $this->getContext($context, "profile")), "url", array()), "html", null, true);
                 echo "\">";
-                echo twig_escape_filter($this->env, $this->getAttribute((isset($context["profile"]) ? $context["profile"] : $this->getContext($context, "profile")), "url"), "html", null, true);
+                echo twig_escape_filter($this->env, $this->getAttribute((isset($context["profile"]) ? $context["profile"] : $this->getContext($context, "profile")), "url", array()), "html", null, true);
                 echo "</a>
                             ";
             } else {
                 // line 22
                 echo "                                ";
-                echo twig_escape_filter($this->env, $this->getAttribute((isset($context["profile"]) ? $context["profile"] : $this->getContext($context, "profile")), "url"), "html", null, true);
+                echo twig_escape_filter($this->env, $this->getAttribute((isset($context["profile"]) ? $context["profile"] : $this->getContext($context, "profile")), "url", array()), "html", null, true);
                 echo "
                             ";
             }
@@ -80,9 +80,9 @@ class __TwigTemplate_b79d9d8701209513a2030d975987001a010c11b20872a2f4e96a375ba35
             echo "                            <span class=\"date\">
                                 <em>by ";
             // line 25
-            echo twig_escape_filter($this->env, $this->getAttribute((isset($context["profile"]) ? $context["profile"] : $this->getContext($context, "profile")), "ip"), "html", null, true);
+            echo twig_escape_filter($this->env, $this->getAttribute((isset($context["profile"]) ? $context["profile"] : $this->getContext($context, "profile")), "ip", array()), "html", null, true);
             echo "</em> at <em>";
-            echo twig_escape_filter($this->env, twig_date_format_filter($this->env, $this->getAttribute((isset($context["profile"]) ? $context["profile"] : $this->getContext($context, "profile")), "time"), "r"), "html", null, true);
+            echo twig_escape_filter($this->env, twig_date_format_filter($this->env, $this->getAttribute((isset($context["profile"]) ? $context["profile"] : $this->getContext($context, "profile")), "time", array()), "r"), "html", null, true);
             echo "</em>
                             </span>
                         </div>
@@ -174,20 +174,20 @@ class __TwigTemplate_b79d9d8701209513a2030d975987001a010c11b20872a2f4e96a375ba35
                 menu = document.getElementById('navigation'), savedState = Sfjs.getPreference('menu/displayState'),
                 displayState, elem, className;
 
-            if (savedState == null) {
+            if (null === savedState) {
                 savedState = 'block';
             }
 
-            displayState = state || (savedState == 'block' ? 'none' : 'block');
+            displayState = state || ('block' === savedState ? 'none' : 'block');
 
-            if (typeof doSave === 'undefined') {
+            if ('undefined' === typeof doSave) {
                 doSave = true;
             }
 
             document.getElementById('searchBar').style.display = displayState;
             document.getElementById('adminBar').style.display = displayState;
 
-            if (displayState == 'block') {
+            if ('block' === displayState) {
                 Sfjs.removeClass(menu, 'collapsed-menu');
                 Sfjs.removeClass(menu.parentNode.parentNode, 'collapsed-menu-parents');
 
@@ -213,7 +213,7 @@ class __TwigTemplate_b79d9d8701209513a2030d975987001a010c11b20872a2f4e96a375ba35
         }
 
         window.setTimeout(function() {
-            if (document.getElementById('menu-profiler') == null) {
+            if (null === document.getElementById('menu-profiler')) {
                 return;
             }
 
@@ -225,12 +225,12 @@ class __TwigTemplate_b79d9d8701209513a2030d975987001a010c11b20872a2f4e96a375ba35
             }
 
             for (elem in menuItems) {
-                if (typeof(menuItems[elem].children) != 'undefined' &&
+                if (typeof(menuItems[elem].children) !== 'undefined' &&
                     menuItems[elem].children.length > 0) {
                     child = menuItems[elem].children[0]
 
-                    if (child.getAttribute('title') == '' ||
-                        child.getAttribute('title') == null) {
+                    if ('' === child.getAttribute('title') ||
+                        null === child.getAttribute('title')) {
                         value = child.text.replace(/^\\s+/g, '').split('\\n')[0].replace(/\\s+\$/g, '');
                         child.setAttribute('title', value);
                     }

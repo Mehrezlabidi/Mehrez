@@ -86,7 +86,7 @@ class __TwigTemplate_ba10b2c6dade025ce67be9ebbe75a8a072b1fd8e38c51d2e01d5aa15151
 \t\t\t<th valign=\"top\">Titre de l'actualit&eacute;:</th>
                         <td>";
         // line 52
-        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "titre"), 'widget', array("attr" => array("class" => "inp-form")));
+        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "titre", array()), 'widget', array("attr" => array("class" => "inp-form")));
         echo "</td>                   
                         <td>
 \t\t\t<div class=\"error-left\"></div>
@@ -97,7 +97,7 @@ class __TwigTemplate_ba10b2c6dade025ce67be9ebbe75a8a072b1fd8e38c51d2e01d5aa15151
 \t\t\t<th valign=\"top\">Image:</th>
 \t\t\t<td>";
         // line 60
-        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "image"), 'widget', array("attr" => array("class" => "inp-form")));
+        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "image", array()), 'widget', array("attr" => array("class" => "inp-form")));
         echo "</td>                      
 \t\t</tr>
                 
@@ -105,7 +105,7 @@ class __TwigTemplate_ba10b2c6dade025ce67be9ebbe75a8a072b1fd8e38c51d2e01d5aa15151
 \t\t\t<th valign=\"top\">Description :</th>
 \t\t\t<td>";
         // line 65
-        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "description"), 'widget', array("attr" => array("class" => "inp-form")));
+        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "description", array()), 'widget', array("attr" => array("class" => "inp-form")));
         echo "  </td>
                         
                         <td>
@@ -117,7 +117,7 @@ class __TwigTemplate_ba10b2c6dade025ce67be9ebbe75a8a072b1fd8e38c51d2e01d5aa15151
 \t\t\t<th valign=\"top\">Utilisateur:</th>
 \t\t\t<td>";
         // line 74
-        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "utilisateur"), 'widget', array("attr" => array("class" => "inp-form")));
+        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "utilisateur", array()), 'widget', array("attr" => array("class" => "inp-form")));
         echo "</td>                      
 \t\t</tr>
                
@@ -131,7 +131,7 @@ class __TwigTemplate_ba10b2c6dade025ce67be9ebbe75a8a072b1fd8e38c51d2e01d5aa15151
 \t\t\t\t<td>
 \t\t\t\t<form id=\"chooseDateForm\" action=\"";
         // line 85
-        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "dateinsertion"), 'widget', array("attr" => array("class" => "inp-form")));
+        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "dateinsertion", array()), 'widget', array("attr" => array("class" => "inp-form")));
         echo " 
                                
 \t\t\t\t</td>
@@ -159,7 +159,7 @@ class __TwigTemplate_ba10b2c6dade025ce67be9ebbe75a8a072b1fd8e38c51d2e01d5aa15151
 \t\t\t<td>";
         // line 106
         echo " </td> <td> ";
-        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "_token"), 'widget');
+        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "_token", array()), 'widget');
         echo " </td>
                         
                         
@@ -313,6 +313,6 @@ class __TwigTemplate_ba10b2c6dade025ce67be9ebbe75a8a072b1fd8e38c51d2e01d5aa15151
 
     public function getDebugInfo()
     {
-        return array (  646 => 414,  641 => 413,  636 => 412,  631 => 411,  626 => 410,  621 => 409,  616 => 407,  611 => 406,  606 => 405,  601 => 404,  596 => 403,  591 => 402,  548 => 415,  545 => 414,  542 => 413,  539 => 412,  536 => 411,  533 => 410,  530 => 409,  528 => 408,  525 => 407,  522 => 406,  519 => 405,  516 => 404,  513 => 403,  510 => 402,  494 => 388,  484 => 381,  433 => 339,  419 => 328,  415 => 327,  408 => 323,  395 => 313,  391 => 312,  371 => 298,  367 => 297,  347 => 283,  343 => 282,  336 => 278,  300 => 245,  296 => 244,  288 => 239,  284 => 238,  228 => 188,  206 => 144,  190 => 131,  161 => 106,  134 => 85,  100 => 60,  53 => 19,  480 => 162,  474 => 161,  469 => 158,  461 => 155,  457 => 153,  453 => 151,  444 => 344,  440 => 343,  437 => 147,  435 => 146,  430 => 144,  427 => 143,  423 => 142,  413 => 134,  409 => 132,  407 => 131,  402 => 130,  398 => 129,  393 => 126,  387 => 122,  384 => 308,  381 => 120,  379 => 119,  374 => 116,  368 => 112,  365 => 111,  362 => 110,  360 => 293,  355 => 106,  341 => 105,  337 => 103,  322 => 101,  314 => 99,  312 => 98,  309 => 97,  305 => 95,  298 => 91,  294 => 90,  285 => 89,  283 => 88,  278 => 207,  268 => 85,  264 => 84,  258 => 81,  252 => 209,  247 => 179,  241 => 77,  229 => 73,  220 => 70,  214 => 69,  177 => 65,  169 => 60,  140 => 55,  132 => 51,  128 => 49,  107 => 36,  61 => 13,  273 => 96,  269 => 94,  254 => 92,  243 => 88,  240 => 86,  238 => 85,  235 => 74,  230 => 82,  227 => 162,  224 => 71,  221 => 77,  219 => 76,  217 => 75,  208 => 68,  204 => 72,  179 => 69,  159 => 61,  143 => 56,  135 => 53,  119 => 42,  102 => 32,  71 => 19,  63 => 15,  59 => 14,  93 => 28,  88 => 6,  78 => 21,  38 => 6,  94 => 28,  89 => 52,  85 => 25,  68 => 14,  56 => 9,  87 => 25,  21 => 2,  26 => 6,  75 => 17,  67 => 15,  46 => 7,  27 => 4,  44 => 12,  31 => 2,  28 => 4,  201 => 92,  196 => 90,  183 => 82,  171 => 61,  166 => 71,  163 => 62,  158 => 67,  156 => 66,  151 => 63,  142 => 59,  138 => 54,  136 => 56,  121 => 46,  117 => 44,  105 => 40,  91 => 27,  62 => 23,  49 => 7,  24 => 4,  25 => 3,  19 => 1,  79 => 18,  72 => 16,  69 => 16,  47 => 9,  40 => 8,  37 => 10,  22 => 1,  246 => 90,  157 => 56,  145 => 46,  139 => 45,  131 => 52,  123 => 47,  120 => 74,  115 => 43,  111 => 37,  108 => 65,  101 => 32,  98 => 31,  96 => 31,  83 => 25,  74 => 14,  66 => 15,  55 => 15,  52 => 21,  50 => 10,  43 => 6,  41 => 10,  35 => 5,  32 => 4,  29 => 3,  209 => 82,  203 => 78,  199 => 67,  193 => 73,  189 => 71,  187 => 84,  182 => 66,  176 => 64,  173 => 65,  168 => 72,  164 => 59,  162 => 57,  154 => 58,  149 => 51,  147 => 58,  144 => 92,  141 => 48,  133 => 55,  130 => 41,  125 => 44,  122 => 43,  116 => 41,  112 => 42,  109 => 34,  106 => 36,  103 => 32,  99 => 31,  95 => 28,  92 => 21,  86 => 28,  82 => 22,  80 => 41,  73 => 19,  64 => 17,  60 => 12,  57 => 11,  54 => 10,  51 => 14,  48 => 13,  45 => 11,  42 => 7,  39 => 8,  36 => 5,  33 => 5,  30 => 7,);
+        return array (  669 => 428,  664 => 427,  659 => 426,  654 => 425,  649 => 424,  644 => 423,  639 => 421,  634 => 420,  629 => 419,  624 => 418,  619 => 417,  614 => 416,  571 => 429,  568 => 428,  565 => 427,  562 => 426,  559 => 425,  556 => 424,  553 => 423,  551 => 422,  548 => 421,  545 => 420,  542 => 419,  539 => 418,  536 => 417,  533 => 416,  517 => 402,  507 => 395,  467 => 358,  463 => 357,  456 => 353,  443 => 343,  439 => 342,  432 => 338,  419 => 328,  415 => 327,  408 => 323,  395 => 313,  391 => 312,  371 => 298,  367 => 297,  347 => 283,  343 => 282,  336 => 278,  300 => 245,  296 => 244,  288 => 239,  284 => 238,  228 => 188,  206 => 144,  190 => 131,  161 => 106,  134 => 85,  100 => 60,  53 => 19,  480 => 162,  474 => 161,  469 => 158,  461 => 155,  457 => 153,  453 => 151,  444 => 149,  440 => 148,  437 => 147,  435 => 146,  430 => 144,  427 => 143,  423 => 142,  413 => 134,  409 => 132,  407 => 131,  402 => 130,  398 => 129,  393 => 126,  387 => 122,  384 => 308,  381 => 120,  379 => 119,  374 => 116,  368 => 112,  365 => 111,  362 => 110,  360 => 293,  355 => 106,  341 => 105,  337 => 103,  322 => 101,  314 => 99,  312 => 98,  309 => 97,  305 => 95,  298 => 91,  294 => 90,  285 => 89,  283 => 88,  278 => 207,  268 => 85,  264 => 84,  258 => 81,  252 => 209,  247 => 179,  241 => 77,  229 => 73,  220 => 70,  214 => 69,  177 => 65,  169 => 60,  140 => 55,  132 => 51,  128 => 49,  107 => 36,  61 => 13,  273 => 96,  269 => 94,  254 => 92,  243 => 88,  240 => 86,  238 => 85,  235 => 74,  230 => 82,  227 => 162,  224 => 71,  221 => 77,  219 => 76,  217 => 75,  208 => 68,  204 => 72,  179 => 69,  159 => 61,  143 => 56,  135 => 53,  119 => 42,  102 => 32,  71 => 19,  63 => 15,  59 => 14,  93 => 28,  88 => 6,  78 => 21,  38 => 6,  94 => 28,  89 => 52,  85 => 25,  68 => 14,  56 => 9,  87 => 25,  21 => 2,  26 => 6,  75 => 17,  67 => 15,  46 => 7,  27 => 4,  44 => 12,  31 => 2,  28 => 4,  201 => 92,  196 => 90,  183 => 82,  171 => 61,  166 => 71,  163 => 62,  158 => 67,  156 => 66,  151 => 63,  142 => 59,  138 => 54,  136 => 56,  121 => 46,  117 => 44,  105 => 40,  91 => 27,  62 => 23,  49 => 7,  24 => 4,  25 => 3,  19 => 1,  79 => 18,  72 => 16,  69 => 16,  47 => 9,  40 => 8,  37 => 10,  22 => 1,  246 => 90,  157 => 56,  145 => 46,  139 => 45,  131 => 52,  123 => 47,  120 => 74,  115 => 43,  111 => 37,  108 => 65,  101 => 32,  98 => 31,  96 => 31,  83 => 25,  74 => 14,  66 => 15,  55 => 15,  52 => 21,  50 => 10,  43 => 6,  41 => 10,  35 => 5,  32 => 4,  29 => 3,  209 => 82,  203 => 78,  199 => 67,  193 => 73,  189 => 71,  187 => 84,  182 => 66,  176 => 64,  173 => 65,  168 => 72,  164 => 59,  162 => 57,  154 => 58,  149 => 51,  147 => 58,  144 => 92,  141 => 48,  133 => 55,  130 => 41,  125 => 44,  122 => 43,  116 => 41,  112 => 42,  109 => 34,  106 => 36,  103 => 32,  99 => 31,  95 => 28,  92 => 21,  86 => 28,  82 => 22,  80 => 41,  73 => 19,  64 => 17,  60 => 12,  57 => 11,  54 => 10,  51 => 14,  48 => 13,  45 => 11,  42 => 7,  39 => 8,  36 => 5,  33 => 5,  30 => 7,);
     }
 }

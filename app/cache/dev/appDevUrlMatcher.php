@@ -522,6 +522,11 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             return array (  '_controller' => 'MyApp\\EspritBundle\\Controller\\MailController::indexAction',  '_route' => 'my_app_esprit_mail',);
         }
 
+        // myapp_choisir_langue
+        if (0 === strpos($pathinfo, '/choisir-langue') && preg_match('#^/choisir\\-langue/(?P<langue>[^/]++)$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'myapp_choisir_langue')), array (  '_controller' => 'MyApp\\EspritBundle\\Controller\\DefaultController::choisirLangueAction',));
+        }
+
         if (0 === strpos($pathinfo, '/admin')) {
             // sonata_admin_redirect
             if (rtrim($pathinfo, '/') === '/admin') {

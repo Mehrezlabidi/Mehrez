@@ -73,6 +73,14 @@ abstract class AbstractImagineTest extends ImagineTestCase
         $this->getImagine()->open($invalidResource);
     }
 
+    public function testShouldFailOnInvalidImage()
+    {
+        $source = 'tests/Imagine/Fixtures/invalid-image.jpg';
+
+        $this->setExpectedException('Imagine\Exception\RuntimeException', sprintf('Unable to open image %s', $source));
+        $this->getImagine()->open($source);
+    }
+
     public function testShouldOpenAnHttpImage()
     {
         $factory = $this->getImagine();

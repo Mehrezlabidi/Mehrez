@@ -66,7 +66,7 @@ class Twig_Compiler implements Twig_CompilerInterface
      * Compiles a node.
      *
      * @param Twig_NodeInterface $node        The node to compile
-     * @param integer            $indentation The current indentation
+     * @param int                $indentation The current indentation
      *
      * @return Twig_Compiler The current compiler instance
      */
@@ -181,14 +181,14 @@ class Twig_Compiler implements Twig_CompilerInterface
         } elseif (is_array($value)) {
             $this->raw('array(');
             $first = true;
-            foreach ($value as $key => $value) {
+            foreach ($value as $key => $v) {
                 if (!$first) {
                     $this->raw(', ');
                 }
                 $first = false;
                 $this->repr($key);
                 $this->raw(' => ');
-                $this->repr($value);
+                $this->repr($v);
             }
             $this->raw(')');
         } else {
@@ -236,7 +236,7 @@ class Twig_Compiler implements Twig_CompilerInterface
     /**
      * Indents the generated code.
      *
-     * @param integer $step The number of indentation to add
+     * @param int     $step The number of indentation to add
      *
      * @return Twig_Compiler The current compiler instance
      */
@@ -250,7 +250,7 @@ class Twig_Compiler implements Twig_CompilerInterface
     /**
      * Outdents the generated code.
      *
-     * @param integer $step The number of indentation to remove
+     * @param int     $step The number of indentation to remove
      *
      * @return Twig_Compiler The current compiler instance
      *
@@ -266,5 +266,10 @@ class Twig_Compiler implements Twig_CompilerInterface
         $this->indentation -= $step;
 
         return $this;
+    }
+
+    public function getVarName()
+    {
+        return sprintf('__internal_%s', hash('sha256', uniqid(mt_rand(), true), false));
     }
 }

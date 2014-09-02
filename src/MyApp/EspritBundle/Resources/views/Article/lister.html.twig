@@ -78,7 +78,7 @@
                        {% if rubrique.menu.id == 1 %}
 
 
-       <li>  <a href="#url">{{  rubrique.title|capitalize }} </a> 
+       <li>  <a href="#url">{{  rubrique.title|capitalize|trans }} </a> 
          <ul>
               {#on affiche seulement les sous rub associés#}
                 {% for sousrubrique in sousrubrique  %} 
@@ -130,7 +130,7 @@
 
          {% block menu_droite  %}
                   {% for menu in menu  %}       
-                            <li class="bg_list_un"><a href="#" style="text-decoration:none">{{ menu.title|capitalize }} </a></li>					 
+<li class="bg_list_un"><a href="#" style="text-decoration:none">{{ menu.title|capitalize }} </a></li>					 
                   {%endfor%}
            {% endblock %}
                             

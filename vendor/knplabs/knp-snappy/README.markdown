@@ -1,10 +1,10 @@
 # Snappy
 
 Snappy is a PHP5 library allowing thumbnail, snapshot or PDF generation from a url or a html page.
-It uses the excellent webkit-based [wkhtmltopdf and wkhtmltoimage](http://code.google.com/p/wkhtmltopdf/)
+It uses the excellent webkit-based [wkhtmltopdf and wkhtmltoimage](http://wkhtmltopdf.org/)
 available on OSX, linux, windows.
 
-You will have to download wkhtmltopdf `0.11.0 >= rc1` in order to use Snappy.
+You will have to download wkhtmltopdf `0.12.x` in order to use Snappy.
 
 [![Build Status](https://secure.travis-ci.org/KnpLabs/snappy.png?branch=master)](http://travis-ci.org/KnpLabs/snappy)
 
@@ -60,6 +60,8 @@ $snappy->setOption('disable-javascript', true);
 $snappy->setOption('no-background', true);
 $snappy->setOption('allow', array('/path1', '/path2'));
 $snappy->setOption('cookie', array('key' => 'value', 'key2' => 'value2'));
+$snappy->setOption('cover', 'pathToCover.html');
+$snappy->setOption('toc', true);
 ```
 
 ## wkhtmltopdf binary as composer dependencies
@@ -93,7 +95,7 @@ And then you can use it
 
 use Knp\Snappy\Pdf;
 
-$myProjetDirectory = '/path/to/my/project';
+$myProjectDirectory = '/path/to/my/project';
 
 $snappy = new Pdf($myProjectDirectory . '/vendor/h4cc/wkhtmltopdf-i386/bin/wkhtmltopdf-i386');
 
