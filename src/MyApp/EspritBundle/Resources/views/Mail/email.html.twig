@@ -1,1 +1,52 @@
-<h1>Mail</h1>
+ 
+<html>
+{% block head %}
+  <title>  Home </title>
+    <meta charset="utf-8">
+<link rel="icon" sizes="16x16" href="{{ asset('favicon.ico') }}" /> 
+
+ <link rel="stylesheet" type="text/css" media="screen" href="{{ asset('bundles/myappesprit/css/cssmail.css') }}"/> 
+
+  {% endblock   %}
+<body>
+<div style="padding: 100px 50px 10px 400px;position:relative; top:-20px; ">   
+<form class="form"> 
+   
+    <p> 
+        <input type="text" name="name" id="name" value="{{ user.username }}" /> 
+        <label for="name">Name</label> 
+    </p> 
+   
+    <p> 
+        <input type="text" name="email" id="email" value="{{ user.email }}"  /> 
+        <label for="email">E-mail</label> 
+    </p> 
+   
+    <p> 
+        <input type="text" name="web" id="web" /> 
+        <label for="web">Website</label> 
+    </p> 
+   
+    <p> 
+        <textarea name="text"  value=""  ></textarea> 
+    </p> 
+    <tr>
+             
+                  <p> 
+                     <a href="{{ path('my_app_esprit_sendmail') }}">
+           <img src="{{ asset('bundles/myappesprit/images/send-button.png') }}" alt="" width="100" height="50" />
+                     </a>
+                 </p>
+             
+              <!--
+                 <button type="reset"> 
+                     <img src="{{ asset('bundles/myappesprit/images/button-reset.png') }}" alt="" width="80" height="30" />
+                 </button>-->
+               
+    </tr>
+</form>
+</div>   
+
+
+</body>
+</html>

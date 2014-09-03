@@ -522,6 +522,15 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             return array (  '_controller' => 'MyApp\\EspritBundle\\Controller\\MailController::indexAction',  '_route' => 'my_app_esprit_mail',);
         }
 
+        // my_app_esprit_sendmail
+        if (rtrim($pathinfo, '/') === '/sendmail') {
+            if (substr($pathinfo, -1) !== '/') {
+                return $this->redirect($pathinfo.'/', 'my_app_esprit_sendmail');
+            }
+
+            return array (  '_controller' => 'MyApp\\EspritBundle\\Controller\\MailController::sendmailAction',  '_route' => 'my_app_esprit_sendmail',);
+        }
+
         // myapp_choisir_langue
         if (0 === strpos($pathinfo, '/choisir-langue') && preg_match('#^/choisir\\-langue/(?P<langue>[^/]++)$#s', $pathinfo, $matches)) {
             return $this->mergeDefaults(array_replace($matches, array('_route' => 'myapp_choisir_langue')), array (  '_controller' => 'MyApp\\EspritBundle\\Controller\\DefaultController::choisirLangueAction',));

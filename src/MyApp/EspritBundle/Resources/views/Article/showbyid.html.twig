@@ -1,30 +1,32 @@
 {% extends 'MyAppEspritBundle:Article:lister.html.twig' %}
-
+ 
 
 
  {% block article %}
-         
+       
  {% for article in article if article.id == a.id %}
 
  
   <ul>
-    <li>&nbsp;&nbsp;&nbsp;{{article.nom}}</li>  
-    <li><center> {{ article.date|date('d/m/Y')}}</center></li> 
+    <li> {{article.nom}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{ article.date|date('d/m/Y')}} </li>  
+   
   </ul>
   
   
-    &nbsp;&nbsp;&nbsp;
+    
     
   {% if article.image is  not  null %}
-        <img src="{{ article.image }}" alt="" width="120" height="120" class="img-border">
+        <center><img src="{{ article.image }}" alt="" width="120" height="120" class="img-border"></center>
+        </br></br>
+    &nbsp;&nbsp;&nbsp;{{article.texte }} 
   {% endif %}
   {% if article.image is   null %}
-        <img src="" alt="{{ article.image }}"alt="" width="120" height="120" class="img-border" />
-  {% endif %}  
+      <!--<img src="" alt="{{ article.image }}"alt="" width="120" height="120" class="img-border" />-->
    
-    </br></br>
+   
+     <!--</br></br>-->
     &nbsp;&nbsp;&nbsp;{{article.texte }} 
-    
+    {% endif %} 
     {%endfor%}
 {% endblock  %}
      

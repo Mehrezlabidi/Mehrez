@@ -463,24 +463,21 @@ updateSelects(today.getTime());
 \t\t</ul>
                 
                 
-
-                <div class=\"nav-divider\">&nbsp;</div>
+";
+        // line 364
+        if ($this->env->getExtension('security')->isGranted("IS_AUTHENTICATED_REMEMBERED")) {
+            // line 365
+            echo "                <div class=\"nav-divider\">&nbsp;</div>
 
  <ul class=\"select\"><li><a href=\"";
-        // line 367
-        echo $this->env->getExtension('routing')->getPath("my_app_esprit_mail");
-        echo "\"><b>Contact Us </b><!--[if IE 7]><!--></a><!--<![endif]-->
+            // line 367
+            echo $this->env->getExtension('routing')->getPath("my_app_esprit_mail");
+            echo "\"><b>Contact Us </b><!--[if IE 7]><!--></a><!--<![endif]-->
 \t\t<!--[if lte IE 6]><table><tr><td><![endif]-->
 \t\t<div class=\"select_sub\">
 \t\t\t<!--<ul class=\"sub\">
-\t\t\t\t<li><a href=\"";
-        // line 371
-        echo $this->env->getExtension('routing')->getPath("my_app_esprit_role_new");
-        echo "\">ajouter  un role</a></li>
-\t\t\t\t<li><a href=\"";
-        // line 372
-        echo $this->env->getExtension('routing')->getPath("my_app_esprit_role_show");
-        echo "\">afficher des  roles</a></li>
+\t\t\t\t<li></a></li>
+\t\t\t\t<li></a></li>
 
                         </ul>-->
 \t\t</div>
@@ -488,7 +485,10 @@ updateSelects(today.getTime());
 \t\t</li>
 \t\t</ul>
                         
-                        
+  ";
+        }
+        // line 380
+        echo "                      
 \t\t<div class=\"clear\"></div>
 \t\t</div>
 \t\t<div class=\"clear\"></div>
@@ -613,6 +613,6 @@ ou d'applications multimédia.<br/>Ils partagent les fonctionnalités suivantes 
 
     public function getDebugInfo()
     {
-        return array (  533 => 417,  523 => 410,  482 => 372,  478 => 371,  471 => 367,  456 => 355,  452 => 354,  445 => 350,  433 => 341,  429 => 340,  422 => 336,  408 => 325,  404 => 324,  397 => 320,  384 => 310,  380 => 309,  373 => 305,  360 => 295,  356 => 294,  349 => 290,  336 => 280,  332 => 279,  325 => 275,  289 => 242,  285 => 241,  277 => 236,  273 => 235,  241 => 206,  217 => 185,  213 => 184,  120 => 94,  31 => 8,  25 => 5,  19 => 1,);
+        return array (  533 => 417,  523 => 410,  491 => 380,  474 => 367,  470 => 365,  468 => 364,  456 => 355,  452 => 354,  445 => 350,  433 => 341,  429 => 340,  422 => 336,  408 => 325,  404 => 324,  397 => 320,  384 => 310,  380 => 309,  373 => 305,  360 => 295,  356 => 294,  349 => 290,  336 => 280,  332 => 279,  325 => 275,  289 => 242,  285 => 241,  277 => 236,  273 => 235,  241 => 206,  217 => 185,  213 => 184,  120 => 94,  31 => 8,  25 => 5,  19 => 1,);
     }
 }
