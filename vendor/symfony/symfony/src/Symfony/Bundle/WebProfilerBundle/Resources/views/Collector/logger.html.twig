@@ -113,9 +113,7 @@
 
             <li>Called from {{ call.file is defined and call.line is defined ? call.file|format_file(call.line, from) : from|raw }}</li>
 
-            {% if index == log.context.stack|length - 1 %}
-                </ul>
-            {% endif %}
+            {{ index == log.context.stack|length - 1 ? '</ul>' : '' }}
         {% endfor %}
     {% else %}
         {{ log.priorityName }} - {{ log.message }}

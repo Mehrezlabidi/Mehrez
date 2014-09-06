@@ -11,9 +11,6 @@
 
 namespace Symfony\Component\Form;
 
-use Symfony\Component\EventDispatcher\EventDispatcherInterface;
-use Symfony\Component\PropertyAccess\PropertyPathInterface;
-
 /**
  * The configuration of a {@link Form} object.
  *
@@ -24,7 +21,7 @@ interface FormConfigInterface
     /**
      * Returns the event dispatcher used to dispatch form events.
      *
-     * @return EventDispatcherInterface The dispatcher.
+     * @return \Symfony\Component\EventDispatcher\EventDispatcherInterface The dispatcher.
      */
     public function getEventDispatcher();
 
@@ -38,7 +35,7 @@ interface FormConfigInterface
     /**
      * Returns the property path that the form should be mapped to.
      *
-     * @return null|PropertyPathInterface The property path.
+     * @return null|\Symfony\Component\PropertyAccess\PropertyPathInterface The property path.
      */
     public function getPropertyPath();
 
@@ -46,21 +43,21 @@ interface FormConfigInterface
      * Returns whether the form should be mapped to an element of its
      * parent's data.
      *
-     * @return bool Whether the form is mapped.
+     * @return bool    Whether the form is mapped.
      */
     public function getMapped();
 
     /**
      * Returns whether the form's data should be modified by reference.
      *
-     * @return bool Whether to modify the form's data by reference.
+     * @return bool    Whether to modify the form's data by reference.
      */
     public function getByReference();
 
     /**
      * Returns whether the form should read and write the data of its parent.
      *
-     * @return bool Whether the form should inherit its parent's data.
+     * @return bool    Whether the form should inherit its parent's data.
      */
     public function getInheritData();
 
@@ -71,7 +68,7 @@ interface FormConfigInterface
      * children. A form can be compound and have no children at all, like
      * for example an empty collection form.
      *
-     * @return bool Whether the form is compound.
+     * @return bool    Whether the form is compound.
      */
     public function getCompound();
 
@@ -106,21 +103,21 @@ interface FormConfigInterface
     /**
      * Returns whether the form is required.
      *
-     * @return bool Whether the form is required.
+     * @return bool    Whether the form is required.
      */
     public function getRequired();
 
     /**
      * Returns whether the form is disabled.
      *
-     * @return bool Whether the form is disabled.
+     * @return bool    Whether the form is disabled.
      */
     public function getDisabled();
 
     /**
      * Returns whether errors attached to the form will bubble to its parent.
      *
-     * @return bool Whether errors will bubble up.
+     * @return bool    Whether errors will bubble up.
      */
     public function getErrorBubbling();
 
@@ -141,17 +138,17 @@ interface FormConfigInterface
     /**
      * Returns whether the attribute with the given name exists.
      *
-     * @param string $name The attribute name.
+     * @param  string $name The attribute name.
      *
-     * @return bool Whether the attribute exists.
+     * @return bool    Whether the attribute exists.
      */
     public function hasAttribute($name);
 
     /**
      * Returns the value of the given attribute.
      *
-     * @param string $name    The attribute name.
-     * @param mixed  $default The value returned if the attribute does not exist.
+     * @param  string $name    The attribute name.
+     * @param  mixed  $default The value returned if the attribute does not exist.
      *
      * @return mixed The attribute value.
      */
@@ -178,7 +175,7 @@ interface FormConfigInterface
      * this configuration. The data can only be modified then by
      * submitting the form.
      *
-     * @return bool Whether the data is locked.
+     * @return bool    Whether the data is locked.
      */
     public function getDataLocked();
 
@@ -213,8 +210,8 @@ interface FormConfigInterface
     /**
      * Returns whether the form should be initialized upon creation.
      *
-     * @return bool Returns true if the form should be initialized
-     *              when created, false otherwise.
+     * @return bool    Returns true if the form should be initialized
+     *                 when created, false otherwise.
      */
     public function getAutoInitialize();
 
@@ -228,17 +225,17 @@ interface FormConfigInterface
     /**
      * Returns whether a specific option exists.
      *
-     * @param string $name The option name,
+     * @param  string $name The option name,
      *
-     * @return bool Whether the option exists.
+     * @return bool    Whether the option exists.
      */
     public function hasOption($name);
 
     /**
      * Returns the value of a specific option.
      *
-     * @param string $name    The option name.
-     * @param mixed  $default The value returned if the option does not exist.
+     * @param  string $name    The option name.
+     * @param  mixed  $default The value returned if the option does not exist.
      *
      * @return mixed The option value.
      */

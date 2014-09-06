@@ -36,8 +36,6 @@ class Curl extends AbstractCurl
      * Introspects the last cURL request.
      *
      * @see curl_getinfo()
-     *
-     * @throws LogicException If there is no cURL resource
      */
     public function getInfo($opt = 0)
     {

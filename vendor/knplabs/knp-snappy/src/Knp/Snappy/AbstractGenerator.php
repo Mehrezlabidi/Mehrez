@@ -25,7 +25,6 @@ abstract class AbstractGenerator implements GeneratorInterface
      *
      * @param string $binary
      * @param array  $options
-     * @param array  $env
      */
     public function __construct($binary, array $options = array(), array $env = null)
     {
@@ -70,8 +69,6 @@ abstract class AbstractGenerator implements GeneratorInterface
      *
      * @param string $name  The option to set
      * @param mixed  $value The value (NULL to unset)
-     *
-     * @throws \InvalidArgumentException
      */
     public function setOption($name, $value)
     {
@@ -168,20 +165,11 @@ abstract class AbstractGenerator implements GeneratorInterface
      */
     public function getOutputFromHtml($html, array $options = array())
     {
-        $fileNames = array();
-        if (is_array($html)) {
-            foreach ($html as $htmlInput) {
-                $fileNames[] = $this->createTemporaryFile($htmlInput, 'html');
-            }
-        } else {
-            $fileNames[] = $this->createTemporaryFile($html, 'html');
-        }
+        $filename = $this->createTemporaryFile($html, 'html');
 
-        $result = $this->getOutput($fileNames, $options);
+        $result = $this->getOutput($filename, $options);
 
-        foreach ($fileNames as $filename) {
-            $this->unlink($filename);
-        }
+        $this->unlink($filename);
 
         return $result;
     }
@@ -212,7 +200,7 @@ abstract class AbstractGenerator implements GeneratorInterface
      * @param string $input   The input file
      * @param string $output  The ouput file
      * @param array  $options An optional array of options that will be used
-     *                        only for this command
+     *                         only for this command
      *
      * @return string
      */
@@ -228,8 +216,6 @@ abstract class AbstractGenerator implements GeneratorInterface
      *
      * @param string $name    The name
      * @param mixed  $default An optional default value
-     *
-     * @throws \InvalidArgumentException
      */
     protected function addOption($name, $default = null)
     {
@@ -256,8 +242,7 @@ abstract class AbstractGenerator implements GeneratorInterface
      * Merges the given array of options to the instance options and returns
      * the result options array. It does NOT change the instance options.
      *
-     * @param  array                     $options
-     * @throws \InvalidArgumentException
+     * @param array $options
      *
      * @return array
      */
@@ -353,10 +338,10 @@ abstract class AbstractGenerator implements GeneratorInterface
     /**
      * Builds the command string
      *
-     * @param string       $binary  The binary path/name
-     * @param string/array $input   Url(s) or file location(s) of the page(s) to process
-     * @param string       $output  File location to the image-to-be
-     * @param array        $options An array of options
+     * @param string $binary  The binary path/name
+     * @param string/array $input  Url(s) or file location(s) of the page(s) to process
+     * @param string $output  File location to the image-to-be
+     * @param array  $options An array of options
      *
      * @return string
      */
@@ -372,12 +357,7 @@ abstract class AbstractGenerator implements GeneratorInterface
             if (null !== $option && false !== $option) {
 
                 if (true === $option) {
-                    // Dont't put '--' if option is 'toc'.
-                    if ($key == 'toc') {
-                        $command .= ' '.$key;
-                    } else {
-                        $command .= ' --'.$key;
-                    }
+                    $command .= ' --'.$key;
 
                 } elseif (is_array($option)) {
                     if ($this->isAssociativeArray($option)) {
@@ -386,17 +366,12 @@ abstract class AbstractGenerator implements GeneratorInterface
                         }
                     } else {
                         foreach ($option as $v) {
-                            $command .= ' --'.$key.' '.escapeshellarg($v);
+                            $command .= " --".$key." ".escapeshellarg($v);
                         }
                     }
 
                 } else {
-                    // Dont't add '--' if option is "cover"  or "toc".
-                    if (in_array($key, array('toc', 'cover'))) {
-                        $command .= ' '.$key.' '.escapeshellarg($option);
-                    } else {
-                        $command .= ' --'.$key.' '.escapeshellarg($option);
-                    }
+                    $command .= ' --'.$key." ".escapeshellarg($option);
                 }
             }
         }
@@ -459,11 +434,7 @@ abstract class AbstractGenerator implements GeneratorInterface
      *
      * @param string  $filename  The output filename
      * @param boolean $overwrite Whether to overwrite the file if it already
-     *                           exist
-     *
-     * @throws Exception\FileAlreadyExistsException
-     * @throws \RuntimeException
-     * @throws \InvalidArgumentException
+     *                            exist
      */
     protected function prepareOutput($filename, $overwrite)
     {

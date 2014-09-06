@@ -31,7 +31,7 @@ class __TwigTemplate_03fa0df8e2fc07bd1e2354a7f2c3f5f1731cf41dd90dbeb192ba6b82cc0
     {
         // line 4
         echo "    ";
-        if ($this->getAttribute((isset($context["collector"]) ? $context["collector"] : $this->getContext($context, "collector")), "hasexception", array())) {
+        if ($this->getAttribute((isset($context["collector"]) ? $context["collector"] : $this->getContext($context, "collector")), "hasexception")) {
             // line 5
             echo "        <style>
             ";
@@ -58,7 +58,7 @@ class __TwigTemplate_03fa0df8e2fc07bd1e2354a7f2c3f5f1731cf41dd90dbeb192ba6b82cc0
     <span class=\"count\">
         ";
         // line 17
-        if ($this->getAttribute((isset($context["collector"]) ? $context["collector"] : $this->getContext($context, "collector")), "hasexception", array())) {
+        if ($this->getAttribute((isset($context["collector"]) ? $context["collector"] : $this->getContext($context, "collector")), "hasexception")) {
             // line 18
             echo "            <span>1</span>
         ";
@@ -77,7 +77,7 @@ class __TwigTemplate_03fa0df8e2fc07bd1e2354a7f2c3f5f1731cf41dd90dbeb192ba6b82cc0
 
     ";
         // line 27
-        if ((!$this->getAttribute((isset($context["collector"]) ? $context["collector"] : $this->getContext($context, "collector")), "hasexception", array()))) {
+        if ((!$this->getAttribute((isset($context["collector"]) ? $context["collector"] : $this->getContext($context, "collector")), "hasexception"))) {
             // line 28
             echo "        <p>
             <em>No exception was thrown and uncaught during the request.</em>

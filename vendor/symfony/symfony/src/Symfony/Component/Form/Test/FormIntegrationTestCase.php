@@ -12,7 +12,6 @@
 namespace Symfony\Component\Form\Test;
 
 use Symfony\Component\Form\Forms;
-use Symfony\Component\Form\FormFactoryInterface;
 
 /**
  * @author Bernhard Schussek <bschussek@gmail.com>
@@ -20,7 +19,7 @@ use Symfony\Component\Form\FormFactoryInterface;
 abstract class FormIntegrationTestCase extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @var FormFactoryInterface
+     * @var \Symfony\Component\Form\FormFactoryInterface
      */
     protected $factory;
 

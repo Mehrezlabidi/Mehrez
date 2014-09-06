@@ -13,7 +13,6 @@ use Symfony\Component\HttpKernel\HttpKernelInterface;
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-use Symfony\Component\HttpFoundation\Session\SessionInterface;
 class SessionListener implements EventSubscriberInterface
 {
 private $container;
@@ -1608,7 +1607,7 @@ if (!isset($this->sorted[$eventName])) {
 $this->sortListeners($eventName);
 }
 }
-return array_filter($this->sorted);
+return $this->sorted;
 }
 public function hasListeners($eventName = null)
 {
@@ -2770,7 +2769,7 @@ namespace
 {
 class Twig_Environment
 {
-const VERSION ='1.16.1-DEV';
+const VERSION ='1.15.1';
 protected $charset;
 protected $loader;
 protected $debug;
@@ -3768,15 +3767,15 @@ $thousandSep = $defaults[2];
 }
 return number_format((float) $number, $decimal, $decimalPoint, $thousandSep);
 }
-function twig_urlencode_filter($url)
+function twig_urlencode_filter($url, $raw = false)
 {
 if (is_array($url)) {
-if (defined('PHP_QUERY_RFC3986')) {
-return http_build_query($url,'','&', PHP_QUERY_RFC3986);
-}
 return http_build_query($url,'','&');
 }
+if ($raw) {
 return rawurlencode($url);
+}
+return urlencode($url);
 }
 if (version_compare(PHP_VERSION,'5.3.0','<')) {
 function twig_jsonencode_filter($value, $options = 0)
@@ -3808,7 +3807,7 @@ $value = (string) $value;
 function twig_array_merge($arr1, $arr2)
 {
 if (!is_array($arr1) || !is_array($arr2)) {
-throw new Twig_Error_Runtime(sprintf('The merge filter only works with arrays or hashes; %s and %s given.', gettype($arr1), gettype($arr2)));
+throw new Twig_Error_Runtime('The merge filter only works with arrays or hashes.');
 }
 return array_merge($arr1, $arr2);
 }
@@ -3822,7 +3821,7 @@ return array_slice($item, $start, $length, $preserveKeys);
 }
 $item = (string) $item;
 if (function_exists('mb_get_info') && null !== $charset = $env->getCharset()) {
-return (string) mb_substr($item, $start, null === $length ? mb_strlen($item, $charset) - $start : $length, $charset);
+return mb_substr($item, $start, null === $length ? mb_strlen($item, $charset) - $start : $length, $charset);
 }
 return null === $length ? substr($item, $start) : substr($item, $start, $length);
 }
@@ -3927,7 +3926,7 @@ switch ($strategy) {
 case'html':
 static $htmlspecialcharsCharsets;
 if (null === $htmlspecialcharsCharsets) {
-if (defined('HHVM_VERSION')) {
+if ('hiphop'=== substr(PHP_VERSION, -6)) {
 $htmlspecialcharsCharsets = array('utf-8'=> true,'UTF-8'=> true);
 } else {
 $htmlspecialcharsCharsets = array('ISO-8859-1'=> true,'ISO8859-1'=> true,'ISO-8859-15'=> true,'ISO8859-15'=> true,'utf-8'=> true,'UTF-8'=> true,'CP866'=> true,'IBM866'=> true,'866'=> true,'CP1251'=> true,'WINDOWS-1251'=> true,'WIN-1251'=> true,'1251'=> true,'CP1252'=> true,'WINDOWS-1252'=> true,'1252'=> true,'KOI8-R'=> true,'KOI8-RU'=> true,'KOI8R'=> true,'BIG5'=> true,'950'=> true,'GB2312'=> true,'936'=> true,'BIG5-HKSCS'=> true,'SHIFT_JIS'=> true,'SJIS'=> true,'932'=> true,'EUC-JP'=> true,'EUCJP'=> true,'ISO8859-5'=> true,'ISO-8859-5'=> true,'MACROMAN'=> true,
@@ -4349,19 +4348,20 @@ public function displayParentBlock($name, array $context, array $blocks = array(
 {
 $name = (string) $name;
 if (isset($this->traits[$name])) {
-$this->traits[$name][0]->displayBlock($name, $context, $blocks, false);
+$this->traits[$name][0]->displayBlock($name, $context, $blocks);
 } elseif (false !== $parent = $this->getParent($context)) {
-$parent->displayBlock($name, $context, $blocks, false);
+$parent->displayBlock($name, $context, $blocks);
 } else {
 throw new Twig_Error_Runtime(sprintf('The template has no parent and no traits defining the "%s" block', $name), -1, $this->getTemplateName());
 }
 }
-public function displayBlock($name, array $context, array $blocks = array(), $useBlocks = true)
+public function displayBlock($name, array $context, array $blocks = array())
 {
 $name = (string) $name;
-if ($useBlocks && isset($blocks[$name])) {
+if (isset($blocks[$name])) {
 $template = $blocks[$name][0];
 $block = $blocks[$name][1];
+unset($blocks[$name]);
 } elseif (isset($this->blocks[$name])) {
 $template = $this->blocks[$name][0];
 $block = $this->blocks[$name][1];
@@ -4378,7 +4378,7 @@ throw $e;
 throw new Twig_Error_Runtime(sprintf('An exception has been thrown during the rendering of a template ("%s").', $e->getMessage()), -1, $template->getTemplateName(), $e);
 }
 } elseif (false !== $parent = $this->getParent($context)) {
-$parent->displayBlock($name, $context, array_merge($this->blocks, $blocks), false);
+$parent->displayBlock($name, $context, array_merge($this->blocks, $blocks));
 }
 }
 public function renderParentBlock($name, array $context, array $blocks = array())
@@ -4387,10 +4387,10 @@ ob_start();
 $this->displayParentBlock($name, $context, $blocks);
 return ob_get_clean();
 }
-public function renderBlock($name, array $context, array $blocks = array(), $useBlocks = true)
+public function renderBlock($name, array $context, array $blocks = array())
 {
 ob_start();
-$this->displayBlock($name, $context, $blocks, $useBlocks);
+$this->displayBlock($name, $context, $blocks);
 return ob_get_clean();
 }
 public function hasBlock($name)
@@ -4407,7 +4407,7 @@ return $this->blocks;
 }
 public function display(array $context, array $blocks = array())
 {
-$this->displayWithErrorHandling($this->env->mergeGlobals($context), array_merge($this->blocks, $blocks));
+$this->displayWithErrorHandling($this->env->mergeGlobals($context), $blocks);
 }
 public function render(array $context)
 {
@@ -4445,7 +4445,7 @@ final protected function getContext($context, $item, $ignoreStrictCheck = false)
 {
 if (!array_key_exists($item, $context)) {
 if ($ignoreStrictCheck || !$this->env->isStrictVariables()) {
-return;
+return null;
 }
 throw new Twig_Error_Runtime(sprintf('Variable "%s" does not exist', $item), -1, $this->getTemplateName());
 }
@@ -4468,18 +4468,14 @@ if ($isDefinedTest) {
 return false;
 }
 if ($ignoreStrictCheck || !$this->env->isStrictVariables()) {
-return;
+return null;
 }
 if ($object instanceof ArrayAccess) {
 $message = sprintf('Key "%s" in object with ArrayAccess of class "%s" does not exist', $arrayItem, get_class($object));
 } elseif (is_object($object)) {
 $message = sprintf('Impossible to access a key "%s" on an object of class "%s" that does not implement ArrayAccess interface', $item, get_class($object));
 } elseif (is_array($object)) {
-if (empty($object)) {
-$message = sprintf('Key "%s" does not exist as the array is empty', $arrayItem);
-} else {
 $message = sprintf('Key "%s" for array with keys "%s" does not exist', $arrayItem, implode(', ', array_keys($object)));
-}
 } elseif (Twig_Template::ARRAY_CALL === $type) {
 $message = sprintf('Impossible to access a key ("%s") on a %s variable ("%s")', $item, gettype($object), $object);
 } else {
@@ -4493,10 +4489,11 @@ if ($isDefinedTest) {
 return false;
 }
 if ($ignoreStrictCheck || !$this->env->isStrictVariables()) {
-return;
+return null;
 }
 throw new Twig_Error_Runtime(sprintf('Impossible to invoke a method ("%s") on a %s variable ("%s")', $item, gettype($object), $object), -1, $this->getTemplateName());
 }
+$class = get_class($object);
 if (Twig_Template::METHOD_CALL !== $type) {
 if (isset($object->$item) || array_key_exists((string) $item, $object)) {
 if ($isDefinedTest) {
@@ -4508,7 +4505,6 @@ $this->env->getExtension('sandbox')->checkPropertyAllowed($object, $item);
 return $object->$item;
 }
 }
-$class = get_class($object);
 if (!isset(self::$cache[$class]['methods'])) {
 self::$cache[$class]['methods'] = array_change_key_case(array_flip(get_class_methods($object)));
 }
@@ -4528,7 +4524,7 @@ if ($isDefinedTest) {
 return false;
 }
 if ($ignoreStrictCheck || !$this->env->isStrictVariables()) {
-return;
+return null;
 }
 throw new Twig_Error_Runtime(sprintf('Method "%s" for object "%s" does not exist', $item, get_class($object)), -1, $this->getTemplateName());
 }
@@ -4542,7 +4538,7 @@ try {
 $ret = call_user_func_array(array($object, $method), $arguments);
 } catch (BadMethodCallException $e) {
 if ($call && ($ignoreStrictCheck || !$this->env->isStrictVariables())) {
-return;
+return null;
 }
 throw $e;
 }
@@ -4575,9 +4571,6 @@ protected $dateFormat;
 public function __construct($dateFormat = null)
 {
 $this->dateFormat = $dateFormat ?: static::SIMPLE_DATE;
-if (!function_exists('json_encode')) {
-throw new \RuntimeException('PHP\'s json extension is required to use Monolog\'s NormalizerFormatter');
-}
 }
 public function format(array $record)
 {
@@ -4661,12 +4654,10 @@ class LineFormatter extends NormalizerFormatter
 const SIMPLE_FORMAT ="[%datetime%] %channel%.%level_name%: %message% %context% %extra%\n";
 protected $format;
 protected $allowInlineLineBreaks;
-protected $ignoreEmptyContextAndExtra;
-public function __construct($format = null, $dateFormat = null, $allowInlineLineBreaks = false, $ignoreEmptyContextAndExtra = false)
+public function __construct($format = null, $dateFormat = null, $allowInlineLineBreaks = false)
 {
 $this->format = $format ?: static::SIMPLE_FORMAT;
 $this->allowInlineLineBreaks = $allowInlineLineBreaks;
-$this->ignoreEmptyContextAndExtra = $ignoreEmptyContextAndExtra;
 parent::__construct($dateFormat);
 }
 public function format(array $record)
@@ -4677,16 +4668,6 @@ foreach ($vars['extra'] as $var => $val) {
 if (false !== strpos($output,'%extra.'.$var.'%')) {
 $output = str_replace('%extra.'.$var.'%', $this->replaceNewlines($this->convertToString($val)), $output);
 unset($vars['extra'][$var]);
-}
-}
-if ($this->ignoreEmptyContextAndExtra) {
-if (empty($vars['context'])) {
-unset($vars['context']);
-$output = str_replace('%context%','', $output);
-}
-if (empty($vars['extra'])) {
-unset($vars['extra']);
-$output = str_replace('%extra%','', $output);
 }
 }
 foreach ($vars as $var => $val) {
@@ -4872,8 +4853,7 @@ protected $stream;
 protected $url;
 private $errorMessage;
 protected $filePermission;
-protected $useLocking;
-public function __construct($stream, $level = Logger::DEBUG, $bubble = true, $filePermission = null, $useLocking = false)
+public function __construct($stream, $level = Logger::DEBUG, $bubble = true, $filePermission = null)
 {
 parent::__construct($level, $bubble);
 if (is_resource($stream)) {
@@ -4882,7 +4862,6 @@ $this->stream = $stream;
 $this->url = $stream;
 }
 $this->filePermission = $filePermission;
-$this->useLocking = $useLocking;
 }
 public function close()
 {
@@ -4909,13 +4888,7 @@ $this->stream = null;
 throw new \UnexpectedValueException(sprintf('The stream or file "%s" could not be opened: '.$this->errorMessage, $this->url));
 }
 }
-if ($this->useLocking) {
-flock($this->stream, LOCK_EX);
-}
 fwrite($this->stream, (string) $record['formatted']);
-if ($this->useLocking) {
-flock($this->stream, LOCK_UN);
-}
 }
 private function customErrorHandler($code, $msg)
 {
@@ -4937,7 +4910,7 @@ protected $bufferSize;
 protected $buffer = array();
 protected $stopBuffering;
 protected $passthruLevel;
-public function __construct($handler, $activationStrategy = null, $bufferSize = 0, $bubble = true, $stopBuffering = true, $passthruLevel = null)
+public function __construct($handler, $activationStrategy = null, $bufferSize = 0, $bubble = true, $stopBuffering = true, $passthruLevel = NULL)
 {
 if (null === $activationStrategy) {
 $activationStrategy = new ErrorLevelActivationStrategy(Logger::WARNING);
@@ -4991,7 +4964,7 @@ return false === $this->bubble;
 }
 public function close()
 {
-if (null !== $this->passthruLevel) {
+if (NULL !== $this->passthruLevel) {
 $level = $this->passthruLevel;
 $this->buffer = array_filter($this->buffer, function ($record) use ($level) {
 return $record['level'] >= $level;
@@ -5005,11 +4978,6 @@ $this->buffer = array();
 public function reset()
 {
 $this->buffering = true;
-}
-public function clear()
-{
-$this->buffer = array();
-$this->reset();
 }
 }
 }
@@ -5882,8 +5850,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ConfigurationInterface;
 use Symfony\Component\HttpFoundation\Request;
 interface ParamConverterInterface
 {
-public function apply(Request $request, ConfigurationInterface $configuration);
-public function supports(ConfigurationInterface $configuration);
+function apply(Request $request, ConfigurationInterface $configuration);
+function supports(ConfigurationInterface $configuration);
 }
 }
 namespace Sensio\Bundle\FrameworkExtraBundle\Request\ParamConverter
@@ -5902,9 +5870,6 @@ return false;
 }
 $options = $configuration->getOptions();
 $value = $request->attributes->get($param);
-if (!$value && $configuration->isOptional()) {
-return false;
-}
 $date = isset($options['format'])
 ? DateTime::createFromFormat($options['format'], $value)
 : new DateTime($value);
@@ -6226,7 +6191,7 @@ if (!$configuration = $event->getRequest()->attributes->get('_cache')) {
 return;
 }
 $response = $event->getResponse();
-if (!in_array($response->getStatusCode(), array(200, 203, 300, 301, 302, 404, 410))) {
+if (!$response->isSuccessful()) {
 return;
 }
 if (null !== $configuration->getSMaxAge()) {
@@ -6259,8 +6224,8 @@ namespace Sensio\Bundle\FrameworkExtraBundle\Configuration
 {
 interface ConfigurationInterface
 {
-public function getAliasName();
-public function allowArray();
+function getAliasName();
+function allowArray();
 }
 }
 namespace Sensio\Bundle\FrameworkExtraBundle\Configuration
@@ -13574,59 +13539,10 @@ namespace Symfony\Component\Validator
 {
 abstract class ConstraintValidator implements ConstraintValidatorInterface
 {
-const PRETTY_DATE = 1;
-const OBJECT_TO_STRING = 2;
 protected $context;
 public function initialize(ExecutionContextInterface $context)
 {
 $this->context = $context;
-}
-protected function formatTypeOf($value)
-{
-return is_object($value) ? get_class($value) : gettype($value);
-}
-protected function formatValue($value, $format = 0)
-{
-if (($format & self::PRETTY_DATE) && $value instanceof \DateTime) {
-if (class_exists('IntlDateFormatter')) {
-$locale = \Locale::getDefault();
-$formatter = new \IntlDateFormatter($locale, \IntlDateFormatter::MEDIUM, \IntlDateFormatter::SHORT);
-return $formatter->format($value);
-}
-return $value->format('Y-m-d H:i:s');
-}
-if (is_object($value)) {
-if ($format & self::OBJECT_TO_STRING && method_exists($value,'__toString')) {
-return $value->__toString();
-}
-return'object';
-}
-if (is_array($value)) {
-return'array';
-}
-if (is_string($value)) {
-return'"'.$value.'"';
-}
-if (is_resource($value)) {
-return'resource';
-}
-if (null === $value) {
-return'null';
-}
-if (false === $value) {
-return'false';
-}
-if (true === $value) {
-return'true';
-}
-return (string) $value;
-}
-protected function formatValues(array $values, $format = 0)
-{
-foreach ($values as $key => $value) {
-$values[$key] = $this->formatValue($value, $format);
-}
-return implode(', ', $values);
 }
 }
 }
@@ -13713,10 +13629,10 @@ class CollectionType extends AbstractType
 public function buildForm(FormBuilderInterface $builder, array $options)
 {
 $listener = new ResizeFormListener(
+$builder->getFormFactory(),
 $options['type'],
 $options['type_options'],
-$options['modifiable'],
-$options['pre_bind_data_callback']
+$options['modifiable']
 );
 $builder->addEventSubscriber($listener);
 }
@@ -13727,7 +13643,7 @@ $view->vars['btn_catalogue'] = $options['btn_catalogue'];
 }
 public function setDefaultOptions(OptionsResolverInterface $resolver)
 {
-$resolver->setDefaults(array('modifiable'=> false,'type'=>'text','type_options'=> array(),'pre_bind_data_callback'=> null,'btn_add'=>'link_add','btn_catalogue'=>'SonataCoreBundle'));
+$resolver->setDefaults(array('modifiable'=> false,'type'=>'text','type_options'=> array(),'btn_add'=>'link_add','btn_catalogue'=>'SonataCoreBundle'));
 }
 public function getName()
 {

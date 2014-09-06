@@ -374,8 +374,6 @@ class ResponseTest extends ResponseTestCase
         $response->prepare($request);
 
         $this->assertEquals('', $response->getContent());
-        $this->assertTrue($response->headers->has('Content-Type'));
-        $this->assertFalse($response->headers->has('Content-Length'));
     }
 
     public function testPrepareSetsPragmaOnHttp10Only()
@@ -680,7 +678,7 @@ class ResponseTest extends ResponseTestCase
     public function validContentProvider()
     {
         return array(
-            'obj'    => array(new StringableObject()),
+            'obj'    => array(new StringableObject),
             'string' => array('Foo'),
             'int'    => array(2),
         );
@@ -689,7 +687,7 @@ class ResponseTest extends ResponseTestCase
     public function invalidContentProvider()
     {
         return array(
-            'obj'   => array(new \stdClass()),
+            'obj'   => array(new \stdClass),
             'array' => array(array()),
             'bool'   => array(true, '1'),
         );

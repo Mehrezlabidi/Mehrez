@@ -34,6 +34,7 @@ class MongoDbSessionHandlerTest extends \PHPUnit_Framework_TestCase
         $mongoClass = (version_compare(phpversion('mongo'), '1.3.0', '<')) ? 'Mongo' : 'MongoClient';
 
         $this->mongo = $this->getMockBuilder($mongoClass)
+            ->disableOriginalConstructor()
             ->getMock();
 
         $this->options = array(
@@ -75,7 +76,9 @@ class MongoDbSessionHandlerTest extends \PHPUnit_Framework_TestCase
 
     public function testWrite()
     {
-        $collection = $this->createMongoCollectionMock();
+        $collection = $this->getMockBuilder('MongoCollection')
+            ->disableOriginalConstructor()
+            ->getMock();
 
         $this->mongo->expects($this->once())
             ->method('selectCollection')
@@ -102,7 +105,9 @@ class MongoDbSessionHandlerTest extends \PHPUnit_Framework_TestCase
 
     public function testReplaceSessionData()
     {
-        $collection = $this->createMongoCollectionMock();
+        $collection = $this->getMockBuilder('MongoCollection')
+            ->disableOriginalConstructor()
+            ->getMock();
 
         $this->mongo->expects($this->once())
             ->method('selectCollection')
@@ -125,7 +130,9 @@ class MongoDbSessionHandlerTest extends \PHPUnit_Framework_TestCase
 
     public function testDestroy()
     {
-        $collection = $this->createMongoCollectionMock();
+        $collection = $this->getMockBuilder('MongoCollection')
+            ->disableOriginalConstructor()
+            ->getMock();
 
         $this->mongo->expects($this->once())
             ->method('selectCollection')
@@ -141,7 +148,9 @@ class MongoDbSessionHandlerTest extends \PHPUnit_Framework_TestCase
 
     public function testGc()
     {
-        $collection = $this->createMongoCollectionMock();
+        $collection = $this->getMockBuilder('MongoCollection')
+            ->disableOriginalConstructor()
+            ->getMock();
 
         $this->mongo->expects($this->once())
             ->method('selectCollection')
@@ -158,20 +167,5 @@ class MongoDbSessionHandlerTest extends \PHPUnit_Framework_TestCase
             }));
 
         $this->assertTrue($this->storage->gc(-1));
-    }
-
-    private function createMongoCollectionMock()
-    {
-
-        $mongoClient = $this->getMockBuilder('MongoClient')
-            ->getMock();
-        $mongoDb = $this->getMockBuilder('MongoDB')
-            ->setConstructorArgs(array($mongoClient, 'database-name'))
-            ->getMock();
-        $collection = $this->getMockBuilder('MongoCollection')
-            ->setConstructorArgs(array($mongoDb, 'collection-name'))
-            ->getMock();
-
-        return $collection;
     }
 }

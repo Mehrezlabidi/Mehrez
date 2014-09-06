@@ -80,8 +80,7 @@ class XmlUtils
                     $valid = false;
                 }
             } elseif (!is_array($schemaOrCallable) && is_file((string) $schemaOrCallable)) {
-                $schemaSource = file_get_contents((string) $schemaOrCallable);
-                $valid = @$dom->schemaValidateSource($schemaSource);
+                $valid = @$dom->schemaValidate($schemaOrCallable);
             } else {
                 libxml_use_internal_errors($internalErrors);
 

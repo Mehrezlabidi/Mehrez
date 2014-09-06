@@ -33,7 +33,7 @@ class Processor
         // Find the expected params
         $expectedValues = $yamlParser->parse(file_get_contents($config['dist-file']));
         if (!isset($expectedValues[$parameterKey])) {
-            throw new \InvalidArgumentException(sprintf('The top-level key %s is missing.', $parameterKey));
+            throw new \InvalidArgumentException('The dist file seems invalid.');
         }
         $expectedParams = (array) $expectedValues[$parameterKey];
 

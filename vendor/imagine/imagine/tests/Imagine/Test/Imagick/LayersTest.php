@@ -33,7 +33,9 @@ class LayersTest extends AbstractLayersTest
     public function testCount()
     {
         $palette = new RGB();
-        $resource = $this->getMock('\Imagick');
+        $resource = $this->getMockBuilder('\Imagick')
+            ->disableOriginalConstructor()
+            ->getMock();
 
         $resource->expects($this->once())
             ->method('getNumberImages')
@@ -47,13 +49,17 @@ class LayersTest extends AbstractLayersTest
     public function testGetLayer()
     {
         $palette = new RGB();
-        $resource = $this->getMock('\Imagick');
+        $resource = $this->getMockBuilder('\Imagick')
+            ->disableOriginalConstructor()
+            ->getMock();
 
         $resource->expects($this->any())
             ->method('getNumberImages')
             ->will($this->returnValue(2));
 
-        $layer = $this->getMock('\Imagick');
+        $layer = $this->getMockBuilder('\Imagick')
+            ->disableOriginalConstructor()
+            ->getMock();
 
         $resource->expects($this->any())
             ->method('getImage')

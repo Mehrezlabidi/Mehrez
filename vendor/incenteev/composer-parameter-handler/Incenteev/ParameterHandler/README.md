@@ -2,7 +2,7 @@
 
 This tool allows you to manage your ignored parameters when running a composer
 install or update. It works when storing the parameters in a Yaml file under
-a single top-level key (named ``parameters`` by default). Other keys are
+a a single top-level key (named ``parameters`` by default). Other keys are
 copied without change.
 
 [![Build Status](https://travis-ci.org/Incenteev/ParameterHandler.png)](https://travis-ci.org/Incenteev/ParameterHandler)
@@ -63,7 +63,7 @@ If composer is run in a non-interactive mode, the values of the dist file
 will be used for missing parameters.
 
 **Warning:** This parameters handler will overwrite any comments or spaces into
-your parameters.yml file so handle with care. If you want to give format
+your parameters.yml file so handle with care. So if you want to give format
 and comments to your parameter's file you should do it on your dist version.
 
 ### Keeping outdated parameters

@@ -136,7 +136,6 @@ class Configuration implements ConfigurationInterface
                 ->scalarNode('optimizations')->end()
                 ->arrayNode('paths')
                     ->normalizeKeys(false)
-                    ->useAttributeAsKey('paths')
                     ->beforeNormalization()
                         ->always()
                         ->then(function ($paths) {

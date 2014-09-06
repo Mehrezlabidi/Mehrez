@@ -207,32 +207,12 @@ class FunctionalTest extends \PHPUnit_Framework_TestCase
         $response = $this->send($client, $request);
     }
 
-    public function testMultiCurlExecutesRequestsConcurently()
-    {
-        $client = new MultiCurl();
-        $client->setTimeout(10);
-
-        $calls = array();
-        $callback = function($client, $request, $response, $options, $error) use(&$calls) {
-            $calls[] = func_get_args();
-        };
-
-        for ($i = 3; $i > 0; $i--) {
-            $request = new Request();
-            $request->fromUrl($_SERVER['TEST_SERVER'].'?delay='.$i);
-            $client->send($request, new Response(), array('callback' => $callback));
-        }
-
-        $client->flush();
-        $this->assertCount(3, $calls);
-    }
-
     public function provideClient()
     {
         return array(
             array(new Curl()),
             array(new FileGetContents()),
-            array(new MultiCurl()),
+            // array(new MultiCurl()),
         );
     }
 
@@ -241,7 +221,7 @@ class FunctionalTest extends \PHPUnit_Framework_TestCase
         // HEAD is intentionally omitted
         // http://stackoverflow.com/questions/2603104/does-mod-php-honor-head-requests-properly
 
-        $methods = array('GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS');
+        $methods = array('GET', 'POST', 'PUT', 'DELETE', 'PATCH');
         $clients = $this->provideClient();
 
         $data = array();

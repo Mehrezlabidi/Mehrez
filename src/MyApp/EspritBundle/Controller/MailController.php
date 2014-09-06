@@ -3,38 +3,36 @@
 namespace MyApp\EspritBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
+use MyApp\EspritBundle\Entity\Mail;
+use MyApp\EspritBundle\Form\MailType;
 
-class MailController extends Controller
-{
-    public function indexAction()          
-    {  
+class MailController extends Controller {
+
+    public function sendAction() {
+
       
-        /*ici on rattrape le useer connecté*/
-         $user = $this->getUser();
-         $user = $this->container->get('security.context')->getToken()->getUser();
-         /*ici on rattrape le useer connecté*/
-        return $this->container->get('templating')->renderResponse('MyAppEspritBundle:Mail:email.html.'.$this->container->getParameter('fos_user.template.engine'), array('user' => $user));
- 
+        $Request = $this->getRequest();
+        if ($Request->getMethod()== "POST")  {
+       $Subject = $Request->get("Subject");
+       $email = $Request->get("email");
+       $message = $Request->get("message");
 
-    }
-     
-    
-        public function sendmailAction()
-    {
-         $user = $this->getUser();
-         $user = $this->container->get('security.context')->getToken()->getUser();
- 
+       $mailer =  $this->container->get('mailer');
+       $transport = \Swift_SmtpTransport::newInstance('smtp.gmail.com',465,'ssl')
+            ->setUsername('mehrez.labidi@esprit.tn')
+            ->setPassword('ak47ak47ak47');
+       $mailer = \Swift_Mailer::newInstance( $transport ) ;     
+       $message = \Swift_Message::newInstance( 'Test') 
        
-         
-    $message = \Swift_Message::newInstance()     // we create a new instance of the Swift_Message class
-   ->setSubject('Symfony Email')     // we configure the title
-   ->setFrom('send@example.com')     // we configure the sender
-   ->setTo('recipient@example.com')     // we configure the recipient
-   ->setContentType("text/html")
-   ->setBody('Nom: '.''.$user.' '.'email:'.$user->getEmail());
-         // and we pass the $name variable to the text template which serves as a body of the message
-  
-        $this->get('mailer')->send($message);     // then we send the message.
-     return $this->render('MyAppEspritBundle:Default:administration.html.twig');
+                ->setSubject($Subject)
+                ->setFrom('mehrez.labidi@esprit.tn')
+                ->setTo($email)
+                ->setBody($message);
+
+        $this->get('mailer')->send($message);
+        }
+        return $this->render('MyAppEspritBundle:Default:administration.html.twig' );
     }
-}
+
+} 

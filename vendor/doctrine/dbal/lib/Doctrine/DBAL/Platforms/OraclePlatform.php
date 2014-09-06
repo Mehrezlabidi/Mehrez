@@ -473,8 +473,7 @@ LEFT JOIN user_cons_columns r_cols
       AND cols.position = r_cols.position
     WHERE alc.constraint_name = cols.constraint_name
       AND alc.constraint_type = 'R'
-      AND alc.table_name = '".$table."'
- ORDER BY alc.constraint_name ASC, cols.position ASC";
+      AND alc.table_name = '".$table."'";
     }
 
     public function getListTableConstraintsSQL($table)

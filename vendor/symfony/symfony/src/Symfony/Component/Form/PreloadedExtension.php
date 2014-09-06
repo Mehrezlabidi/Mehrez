@@ -21,12 +21,12 @@ use Symfony\Component\Form\Exception\InvalidArgumentException;
 class PreloadedExtension implements FormExtensionInterface
 {
     /**
-     * @var FormTypeInterface[]
+     * @var array
      */
     private $types = array();
 
     /**
-     * @var array[FormTypeExtensionInterface[]]
+     * @var array
      */
     private $typeExtensions = array();
 
